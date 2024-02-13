@@ -7,7 +7,7 @@ const kittenNameAnastacio = 'Anastacio';
 const kittenDescOne = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
 const kittenRaceSiames = 'Siamés'
 const kittenOne = `
-<li class="card">
+<li class="card js-card-one">
 <article>
 <img class="card_img" src="${kittenImageOne}" alt="siames-cat" />
 <h3 class="card_title">${kittenNameAnastacio.toUpperCase()}</h3>
@@ -19,13 +19,12 @@ ${kittenDescOne}
 </li>
 `;
 
-
 const kittenImageTwo = 'https://dev.adalab.es/sphynx-gato.webp';
 const kittenNameFiona = 'Fiona';
 const kittenDescTwo = 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.';
 const kittenRaceSphynx = 'Sphynx'
 const kittenTwo = `
-<li class="card">
+<li class="card js-card-two">
 <img class="card_img" src="${kittenImageTwo}" alt="sphynx-cat" />
 <h3 class="card_title">${kittenNameFiona.toUpperCase()}</h3>
 <h4 class="card_race">${kittenRaceSphynx}</h4>
@@ -38,7 +37,7 @@ const kittenNameCielo = 'Cielo';
 const kittenDescThree = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 const kittenRaceMaine = 'Maine Coon'
 const kittenThree = `
-<li class="card">
+<li class="card js-card-three">
 <img
   class="card_img"
   src="${kittenImageThree}"
@@ -51,3 +50,27 @@ const kittenThree = `
 </p>
 </li>`;
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+
+const inputSearchDesc = document.querySelector('.js_in_search_desc').value;
+const cardOne = document.querySelector('.js-card-one');
+const cardTwo = document.querySelector('.js-card-two');
+const cardThree = document.querySelector('.js-card-three');
+let race = ''
+
+if (kittenDescOne.includes(inputSearchDesc) ) {
+
+}else{
+  cardOne.classList.add('collapsed');
+}
+if (kittenDescTwo.includes(inputSearchDesc) ) {
+
+}else{
+  cardTwo.classList.add('collapsed');
+}
+if (kittenDescThree.includes(inputSearchDesc) ) {
+
+}else{
+  cardThree.classList.add('collapsed');
+}
+race.innerHTML = `Uy que despiste, no sabemos su raza`;
