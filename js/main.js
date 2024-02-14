@@ -73,4 +73,30 @@ if (kittenDescThree.includes(inputSearchDesc) ) {
 }else{
   cardThree.classList.add('collapsed');
 }
-race.innerHTML = `Uy que despiste, no sabemos su raza`;
+// race.innerHTML = `Uy que despiste, no sabemos su raza`;
+
+
+const addButton = document.querySelector('.js-btn-add');
+const cancelButton = document.querySelector('.js-btn-cancel');
+const newForm = document.querySelector('.js-new-form')
+const inputDesc = document.querySelector('.js-input-desc');
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const labelMessageError = document.querySelector('.js-label-error');
+
+addButton.addEventListener('click', () => {
+
+  const valueDesc = inputDesc.value;
+  const valuePhoto = inputPhoto.value;
+  const valueName = inputName.value;
+
+  if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo'
+  } else {
+  
+}
+})
+
+cancelButton.addEventListener('click', () => {
+  newForm.classList.add('collapsed')
+})
