@@ -50,8 +50,23 @@ const kittenThree = `
 </p>
 </li>`;
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
+function renderKitten(url, desc, name, race) {
+ const kitten = `
+ <li class="card js-card-three">
+ <img
+   class="card_img"
+   src="${url}"
+   alt="maine-coon-cat"
+ />
+ <h3 class="card_title">${name}</h3>
+ <h4 class="card_race">${race}</h4>
+ <p class="card_description">
+   ${desc}
+ </p>
+ </li>`;
+}
 
-
+// list.innerHTML = renderKitten( kittenImageOne, kittenDescOne, kittenNameAnastacio,kittenRaceSiames) 
 const inputSearchDesc = document.querySelector('.js_in_search_desc').value;
 const cardOne = document.querySelector('.js-card-one');
 const cardTwo = document.querySelector('.js-card-two');
@@ -86,17 +101,36 @@ const labelMessageError = document.querySelector('.js-label-error');
 
 addButton.addEventListener('click', () => {
 
+  
+})
+
+function addNewKitten(event) {
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
   const valueName = inputName.value;
 
   if (valueDesc === '' || valuePhoto === '' || valueName === '') {
     labelMessageError.innerHTML = '¡Uy! parece que has olvidado algo'
-  } else {
-  
+  } 
 }
-})
 
-cancelButton.addEventListener('click', () => {
-  newForm.classList.add('collapsed')
-})
+
+function showNewCatForm() {
+  newForm.classList.remove('collapsed');
+}
+function hideNewCatForm() {
+  newForm.classList.add('collapsed');
+}
+function handleClickNewCatForm(event) {
+  event.preventDefault();
+  if (newForm.classList.contains('collapsed')) {
+    newForm.classList.remove('collapsed');
+  } else {
+   newForm.classList.add('collapsed');
+  }
+}
+
+cancelButton.addEventListener('click', hideNewCatForm)
+const plusButton = document.querySelector('.js-plus-btn')
+plusButton.addEventListener('click', handleClickNewCatForm)
+addButton.addEventListener('click', addNewKitten);
