@@ -20,7 +20,7 @@ const kittenRaceThree = 'Maine Coon'
 
 function renderKitten(url, desc, name, race) {
  const kitten = `
- <li class="card js-card-three">
+ <li class="card">
  <img
    class="card_img"
    src="${url}"
@@ -34,33 +34,38 @@ function renderKitten(url, desc, name, race) {
  </li>`;
  return kitten
 }
+const kittenOne = renderKitten(kittenImageOne, kittenDescOne, kittenNameOne, kittenRaceOne);
+const kittenTwo = renderKitten(kittenImageTwo, kittenDescTwo, kittenNameTwo, kittenRaceTwo);
+const kittenThree = renderKitten(kittenImageThree, kittenDescThree, kittenNameThree, kittenRaceThree);
 
-list.innerHTML = renderKitten(kittenImageOne, kittenDescOne, kittenNameOne, kittenRaceOne) + renderKitten(kittenImageTwo, kittenDescTwo, kittenNameTwo, kittenRaceTwo) + renderKitten(kittenImageThree, kittenDescThree, kittenNameThree, kittenRaceThree)
+list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
 const inputSearchDesc = document.querySelector('.js_in_search_desc').value;
 const cardOne = document.querySelector('.js-card-one');
 const cardTwo = document.querySelector('.js-card-two');
 const cardThree = document.querySelector('.js-card-three');
-let race = ''
+const buttonSearch = document.querySelector('.js-button-search');
 
-if (kittenDescOne.includes(inputSearchDesc) ) {
 
-}else{
-  cardOne.classList.add('collapsed');
+const filterKitten = (event) => {
+  event.preventDefault();
+
+  if (kittenDescOne.includes(inputSearchDesc)) {
+    console.log(list)
+    list.innerHTML += kittenOne;
+  }
+  if (kittenDescTwo.includes(inputSearchDesc)) {
+    console.log('kitten2')
+    list.innerHTML += kittenTwo;
+  }
+  if (kittenDescThree.includes(inputSearchDesc)) {
+    console.log('kitten3')
+    list.innerHTML += kittenThree;
+  }
 }
-if (kittenDescTwo.includes(inputSearchDesc) ) {
 
-}else{
-  cardTwo.classList.add('collapsed');
-}
-if (kittenDescThree.includes(inputSearchDesc) ) {
-
-}else{
-  cardThree.classList.add('collapsed');
-}
-// race.innerHTML = `Uy que despiste, no sabemos su raza`;
-
+buttonSearch.addEventListener('click', filterKitten);
 
 const addButton = document.querySelector('.js-btn-add');
 const cancelButton = document.querySelector('.js-btn-cancel');
