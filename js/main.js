@@ -41,26 +41,26 @@ const kittenThree = renderKitten(kittenImageThree, kittenDescThree, kittenNameTh
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
-const inputSearchDesc = document.querySelector('.js_in_search_desc').value;
+const inputSearchDesc = document.querySelector('.js_in_search_desc');
 const cardOne = document.querySelector('.js-card-one');
 const cardTwo = document.querySelector('.js-card-two');
 const cardThree = document.querySelector('.js-card-three');
 const buttonSearch = document.querySelector('.js-button-search');
 
 
+
 const filterKitten = (event) => {
   event.preventDefault();
+  const searchDesc = inputSearchDesc.value;
+  list.innerHTML = '';
 
-  if (kittenDescOne.includes(inputSearchDesc)) {
-    console.log(list)
+  if (kittenDescOne.includes(searchDesc)) {
     list.innerHTML += kittenOne;
   }
-  if (kittenDescTwo.includes(inputSearchDesc)) {
-    console.log('kitten2')
+  if (kittenDescTwo.includes(searchDesc)) {
     list.innerHTML += kittenTwo;
   }
-  if (kittenDescThree.includes(inputSearchDesc)) {
-    console.log('kitten3')
+  if (kittenDescThree.includes(searchDesc)) {
     list.innerHTML += kittenThree;
   }
 }
