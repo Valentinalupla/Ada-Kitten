@@ -1,44 +1,53 @@
 'use strict'
 
 const list = document.querySelector('.js-list');
+const kitttenData_1 = {
+  image: 'https://dev.adalab.es/gato-siames.webp' ,
+  name: 'Anastacio' ,
+  desc: 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.' ,
+  race: 'Siamés' 
+}
+const kitttenData_2 = {
+  image:'https://dev.adalab.es/sphynx-gato.webp' ,
+  name: 'Fiona' ,
+  desc: 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.' ,
+  race: 'Sphynx' 
+}
+const kitttenData_3 = {
+  image:'https://dev.adalab.es/maine-coon-cat.webp' ,
+  name: 'Cielo' ,
+  desc: 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.' ,
+  race: 'Maine Coon' 
+}
 
-const kittenImageOne = 'https://dev.adalab.es/gato-siames.webp';
-const kittenNameOne = 'Anastacio';
-const kittenDescOne = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
-const kittenRaceOne = 'Siamés'
-
-const kittenImageTwo = 'https://dev.adalab.es/sphynx-gato.webp';
-const kittenNameTwo = 'Fiona';
-const kittenDescTwo = 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.';
-const kittenRaceTwo = 'Sphynx'
-
-const kittenImageThree = 'https://dev.adalab.es/maine-coon-cat.webp';
-const kittenNameThree = 'Cielo';
-const kittenDescThree = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
-const kittenRaceThree = 'Maine Coon'
 
 
-function renderKitten(url, desc, name, race) {
+function renderKitten(data) {
+  let race = data.race
+  if (data.race === undefined){
+    race = 'Uy no sabemos su raza'
+  }
  const kitten = `
  <li class="card">
  <img
    class="card_img"
-   src="${url}"
+   src="${data.image}"
    alt="maine-coon-cat"
  />
- <h3 class="card_title">${name}</h3>
+ <h3 class="card_title">${data.name}</h3>
  <h4 class="card_race">${race}</h4>
  <p class="card_description">
-   ${desc}
+   ${data.desc}
  </p>
  </li>`;
  return kitten
 }
-const kittenOne = renderKitten(kittenImageOne, kittenDescOne, kittenNameOne, kittenRaceOne);
-const kittenTwo = renderKitten(kittenImageTwo, kittenDescTwo, kittenNameTwo, kittenRaceTwo);
-const kittenThree = renderKitten(kittenImageThree, kittenDescThree, kittenNameThree, kittenRaceThree);
+const kittenOne = renderKitten(kitttenData_1);
+const kittenTwo = renderKitten(kitttenData_2);
+const kittenThree = renderKitten(kitttenData_3);
 
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
+// const renderRace = ()
 
 
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
@@ -54,13 +63,13 @@ const filterKitten = (event) => {
   const searchDesc = inputSearchDesc.value;
   list.innerHTML = '';
 
-  if (kittenDescOne.includes(searchDesc)) {
+  if (kitttenData_1.desc.includes(searchDesc)) {
     list.innerHTML += kittenOne;
   }
-  if (kittenDescTwo.includes(searchDesc)) {
+  if (kitttenData_2.desc.includes(searchDesc)) {
     list.innerHTML += kittenTwo;
   }
-  if (kittenDescThree.includes(searchDesc)) {
+  if (kitttenData_3.desc.includes(searchDesc)) {
     list.innerHTML += kittenThree;
   }
 }
