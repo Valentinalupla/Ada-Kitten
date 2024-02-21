@@ -8,23 +8,7 @@ const cardTwo = document.querySelector('.js-card-two');
 const cardThree = document.querySelector('.js-card-three');
 const buttonSearch = document.querySelector('.js-button-search');
 
-const filterKitten = (event) => {
-  event.preventDefault();
-  const searchDesc = inputSearchDesc.value;
-  list.innerHTML = '';
 
-  if (kitttenData_1.desc.includes(searchDesc)) {
-    list.innerHTML += kittenOne;
-  }
-  if (kitttenData_2.desc.includes(searchDesc)) {
-    list.innerHTML += kittenTwo;
-  }
-  if (kitttenData_3.desc.includes(searchDesc)) {
-    list.innerHTML += kittenThree;
-  }
-};
-
-buttonSearch.addEventListener('click', filterKitten);
 
 const addButton = document.querySelector('.js-btn-add');
 const cancelButton = document.querySelector('.js-btn-cancel');
@@ -34,6 +18,7 @@ const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const inputRace = document.querySelector('.js-input-race');
 const labelMessageError = document.querySelector('.js-label-error');
+const form = document.querySelector('.js-form')
 
 function uy() {
   const valueDesc = inputDesc.value;
@@ -67,16 +52,12 @@ function addKitten() {
   return kitten;
 }
 
-function resetForm() {
-  const resetForm = document.querySelector('.js-new-form');
-  resetForm.reset();
-}
 
 function addNewKitten(event) {
   event.preventDefault();
   uy();
   list.innerHTML += addKitten();
-  resetForm();
+  form.reset();
 }
 
 function showNewCatForm() {
@@ -115,10 +96,38 @@ const kittenData_3 = {
   image: 'https://dev.adalab.es/maine-coon-cat.webp',
   name: 'Cielo',
   desc: 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
-  race: 'Maine Coon',
+  // race: 'Maine Coon',
 };
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+
+
+
+function renderKittenList (){
+ 
+  for(const kittenItem of kittenDataList){
+    let race = kittenItem.race;
+    if (kittenItem.race === undefined) {
+      race = 'Uy no sabemos su raza';
+    }
+
+    list.innerHTML += `
+    <li class="card">
+    <img
+      class="card_img"
+      src="${kittenItem.image}"
+      alt="maine-coon-cat"
+    />
+    <h3 class="card_title">${kittenItem.name}</h3>
+    <h4 class="card_race">${race}</h4>
+    <p class="card_description">
+      ${kittenItem.desc}
+    </p>
+    </li>`;
+  }
+}
+
+renderKittenList()
 
 function renderKitten(data) {
   let race = data.race;
@@ -140,9 +149,18 @@ function renderKitten(data) {
  </li>`;
   return kitten;
 }
-const kittenOne = renderKitten(kittenDataList[0]);
-const kittenTwo = renderKitten(kittenDataList[1]);
-const kittenThree = renderKitten(kittenDataList[2]);
 
-list.innerHTML = kittenOne + kittenTwo + kittenThree;
-// const renderRace = ()
+const filterKitten = (event) => {
+  event.preventDefault();
+  const searchDesc = inputSearchDesc.value;
+  list.innerHTML = '';
+
+  for (const kittenItem of kittenDataList) {
+     if (kittenItem.desc.includes(searchDesc)){
+      list.innerHTML += renderKitten(kittenItem)
+     }
+  }
+};
+
+buttonSearch.addEventListener('click', filterKitten);
+
